@@ -1,11 +1,10 @@
 package personHerencia;
 
-import java.io.Serializable;
 
 import iTacademy.InventoryFullException;
 import iTacademy.Item;
 
-	public class Thief extends Person implements Serializable {
+	public class Thief extends Person {
 
 		private final int MAX_ITEMS = 3;
 		private final double TAX = 1;

@@ -6,6 +6,7 @@ import iTacademy.InventoryFullException;
 import iTacademy.Item;
 
 	public abstract  class Person {
+		
 	    protected String name;
 	    protected String city;
 	    protected ArrayList<Item> inventory;

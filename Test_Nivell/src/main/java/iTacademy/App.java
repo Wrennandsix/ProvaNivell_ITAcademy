@@ -1,9 +1,5 @@
 package iTacademy;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -260,7 +256,7 @@ public class App {
 		}
 		public static void printLowestItemCity(Item item, String city) {
 			if(item.getName() == null) {
-				System.out.println("The city "+city+" does not exist or all persons in this city have no items");
+				System.out.println("The city "+city+" does not exist in our database or all persons in this city have no items");
 			}else {
 				System.out.println("The lowest priced item in " + city + " is: " + item);
 			}		
