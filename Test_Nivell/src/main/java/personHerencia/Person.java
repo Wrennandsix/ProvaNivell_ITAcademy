@@ -14,7 +14,6 @@ import iTacademy.Item;
 	    private static int nextId = 0;
 	   
 		public Person(String name, String city) {
-			super();
 			this.id = nextId++;
 			this.inventory = new ArrayList<Item>();
 			this.name = name;

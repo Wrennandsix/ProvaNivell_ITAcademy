@@ -3,7 +3,7 @@ package personHerencia;
 import iTacademy.InventoryFullException;
 import iTacademy.Item;
 
-public class Merchant extends Person  {
+public class Merchant extends Person {
 
 	private final int MAX_ITEMS = 7;
 	private final double TAX = 0.04;
@@ -11,34 +11,28 @@ public class Merchant extends Person  {
 	private final String TYPE = "Merchant";
 
 	public Merchant(String name, String city) {
-		super(name,city);
+		super(name, city);
 	}
 
 	public void addItem(Item item) throws InventoryFullException {
-		try {
-			if (super.inventory.size() <= this.MAX_ITEMS) {
-				item.setWearPercentage(item.getPercentageWear() * this.WEARLOSE);
-				item.setPrice(item.getPrice() + item.getPrice() * this.TAX);
-				super.inventory.add(item);
-			} else {
-				throw new InventoryFullException();
-			}
-		} catch (InventoryFullException ex) {
-			System.out.println(ex.getMessage());
+
+		if (super.inventory.size() <= this.MAX_ITEMS) {
+			item.setWearPercentage(item.getPercentageWear() * this.WEARLOSE);
+			item.setPrice(item.getPrice() + item.getPrice() * this.TAX);
+			super.inventory.add(item);
+		} else {
+			throw new InventoryFullException();
 		}
 	}
 
 	public void buyItem(Item item) throws InventoryFullException {
-		try {
-			if (inventory.size() >= this.MAX_ITEMS) {
-				throw new InventoryFullException();
-			} else {
-				item.setWearPercentage(item.getPercentageWear() * this.WEARLOSE);
-				item.setPrice(item.getPrice() + item.getPrice() * this.TAX);
-				inventory.add(item);
-			}
-		} catch (InventoryFullException ex) {
-			System.out.println(ex.getMessage());
+
+		if (inventory.size() >= this.MAX_ITEMS) {
+			throw new InventoryFullException();
+		} else {
+			item.setWearPercentage(item.getPercentageWear() * this.WEARLOSE);
+			item.setPrice(item.getPrice() + item.getPrice() * this.TAX);
+			inventory.add(item);
 		}
 	}
 

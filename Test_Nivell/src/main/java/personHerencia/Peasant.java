@@ -11,43 +11,39 @@ public class Peasant extends Person {
 	private final String TYPE = "Peasant";
 
 	public Peasant(String name, String city) {
-		super(name,city);
+		super(name, city);
 	}
 
 	public void addItem(Item item) throws InventoryFullException {
-		try {
-			if (super.inventory.size() <= this.MAX_ITEMS) {
-				item.setWearPercentage(item.getPercentageWear() - item.getPercentageWear() * this.WEARLOSE);
-				item.setPrice(item.getPrice() + item.getPrice() * this.TAX);
-				super.inventory.add(item);
-			} else {
-				throw new InventoryFullException();
-			}
-		} catch (InventoryFullException ex) {
-			System.out.println(ex.getMessage());
+
+		if (super.inventory.size() <= this.MAX_ITEMS) {
+			item.setWearPercentage(item.getPercentageWear() - item.getPercentageWear() * this.WEARLOSE);
+			item.setPrice(item.getPrice() + item.getPrice() * this.TAX);
+			super.inventory.add(item);
+		} else {
+			throw new InventoryFullException();
 		}
 	}
 
 	public void buyItem(Item item) throws InventoryFullException {
-		try {
-			if (inventory.size() >= this.MAX_ITEMS) {
-				throw new InventoryFullException();
-			} else {
-				item.setWearPercentage(item.getPercentageWear() - item.getPercentageWear() * this.WEARLOSE);				
-				item.setPrice(item.getPrice() + item.getPrice() * this.TAX);
-				inventory.add(item);
-			}
-		} catch (InventoryFullException ex) {
-			System.out.println(ex.getMessage());
+
+		if (inventory.size() >= this.MAX_ITEMS) {
+			throw new InventoryFullException();
+		} else {
+			item.setWearPercentage(item.getPercentageWear() - item.getPercentageWear() * this.WEARLOSE);
+			item.setPrice(item.getPrice() + item.getPrice() * this.TAX);
+			inventory.add(item);
 		}
 	}
 
 	public void sellItem(Item item) {
 		inventory.remove(item);
 	}
+
 	public String getTYPE() {
 		return TYPE;
 	}
+
 	public void showInventory() {
 
 		if (inventory.isEmpty()) {
