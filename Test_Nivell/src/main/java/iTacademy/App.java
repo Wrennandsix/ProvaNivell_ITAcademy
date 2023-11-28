@@ -306,7 +306,7 @@ public class App {
 		System.out.println("Created People");
 
 		Item onion = new Item("onion", "vegetable", 0.30);
-		Item carrot = new Item("onion", "vegetable", 0.50);
+		Item carrot = new Item("carrot", "vegetable", 0.50);
 		Item apple = new Item("apple", "fruit", 0.70);
 		Item hamburger = new Item("hamburger", "meat", 5.50);
 		Item helmet = new Item("helmet", "armor", 99.89);
