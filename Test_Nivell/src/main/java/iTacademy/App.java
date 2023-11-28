@@ -59,9 +59,10 @@ public class App {
 				pedro.addItem(axe);
 
 				System.out.println("Added items to people");	
-			}catch(InventoryFullException ex) {
-				System.out.println(ex.getMessage());
+			}catch(InventoryFullException ife) {
+				System.out.println(ife.getMessage());
 			}
+			
 			int option;
 			do {			
 				option = menu();	
@@ -96,28 +97,25 @@ public class App {
 
 					break;
 				case 6:
-					serializeObject(people);
-					break;
-				case 7:
 					Person person2 = requestPersonData();
 					addPerson(people,person2);
-					
 					break;
-				case 8:
+				case 7:
 					Item newItem = requestNewItem();
 					int id3 = requestId();
 					Person person3 = findPerson(people,id3);
 					addNewItem(person3,newItem);
+					
 					break;
-				case 9:
+				case 8:
 					System.out.println("Shutting down the app");
 					break;
-					
+				
 				default:
 					System.out.println("Input a valid  number, please see the following options:");			
 				}
 
-			}while(option!=9);	
+			}while(option!=8);	
 		}
 
 		public static int menu() {		
@@ -129,10 +127,10 @@ public class App {
 					"3- Show the lowest priced items from all the sellers in a city\n" +
 					"4- Show all items of an item type ordered by price.\n" +
 					"5- Buy an item from another Person.\n" +
-					"6- Serialize the information of each Person in a Json\n" +
-					"7- Create person in our database\n" +
-					"8- Add new item to a Person\n"+
-					"9- Shutt down the app");
+					"6- Create person in our database\n" +
+					"7- Add new item to a Person\n" +
+					"8- Shutt down the app");
+					
 
 			option = sc.nextInt();
 			return option;	
@@ -191,9 +189,7 @@ public class App {
 				person = new Peasant(name, city);	
 				
 			}else if(type.equalsIgnoreCase("Thief")) {
-				person = new Peasant(name, city);	
-			}else {
-				
+				person = new Thief(name, city);	
 			}
 			return person;	
 		}
@@ -211,13 +207,18 @@ public class App {
 		}
 		
 		public static Person findPerson(ArrayList<Person> people, int id) {
+			
 			Person personFinded = null;
-
-			for(Person person : people) {
-				if(person.getPersonId() == id) {
-					personFinded = person;			
+			boolean finded = false;
+			int i = 0;
+			while (i < people.size() && finded == false) {
+				if (people.get(i).getPersonId() == id) {
+					personFinded = people.get(i);
+					finded = true;
 				}
+				i++;
 			}
+
 			return personFinded;
 
 		}
@@ -273,10 +274,12 @@ public class App {
 		    }
 		
 		public static void printItemsType(ArrayList<Item> items, String type) {
+			
 			if(items.isEmpty() == true) {
 				System.out.println("The item type: "+type+" does not exist or any person have this item type");
 			}else {
-				Collections.sort(items, Comparator.comparingDouble(Item::getPrice));			 
+				Collections.sort(items, Comparator.comparingDouble(Item::getPrice));
+				
 				System.out.println("Items of the type " +type+ ":\n" +items);
 			}		
 		}
@@ -293,8 +296,8 @@ public class App {
 							personBuyer.buyItem(item2);
 							personSeller.sellItem(item2);
 							
-						}catch (InventoryFullException ex) {
-							System.out.println(ex.getMessage());
+						}catch (InventoryFullException ife) {
+							System.out.println(ife.getMessage());
 							exception = true;
 						}
 					}
@@ -307,19 +310,7 @@ public class App {
 				System.out.println("New price of: "+item2.getPrice());
 			}
 		}
-		public static void serializeObject(ArrayList<Person> people) {
-
-			String relativePath = new File("").getAbsolutePath();
-			String absolutePath = relativePath + "./src/main/java/itAcademy/people.ser";
-
-			try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(absolutePath))) {    
-				outputStream.writeObject(people);
-				System.out.println("Objects People serialized and saved to: " + absolutePath);
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+	
 		private static void addPerson(ArrayList<Person> people,Person person) {
 			if(person == null) {
 				System.out.println(" The type of person it's not valid");
@@ -338,8 +329,8 @@ public class App {
 				try {
 					person.addItem(item);
 					System.out.println(person+" added succefully to his inventory "+item+"with wear percentage: "+item.getPercentageWear());
-				} catch (InventoryFullException e) {
-					e.printStackTrace();
+				} catch (InventoryFullException ife) {
+					System.out.println(ife.getMessage());
 				}
 			}
 		}
