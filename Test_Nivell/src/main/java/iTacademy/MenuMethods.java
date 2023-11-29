@@ -124,8 +124,7 @@ public class MenuMethods {
 		Person person = null;
 		int option = 0;
 		do {
-			System.out.println("Input 1 for Merchant\n" + "Input 2 for Peasant\n" + "Input 3 for Thief");
-			option = sc.nextInt();
+			option = Input.llegirInt("Input 1 for Merchant\n" + "Input 2 for Peasant\n" + "Input 3 for Thief");
 			if (option != 1 && option != 2 && option != 3) {
 				System.out.println("Please input a valid number option.");
 			}
@@ -267,7 +266,7 @@ public class MenuMethods {
 
 	private static void addPerson(ArrayList<Person> people, Person person) {
 
-		System.out.println("The person: " + person + " was succefully addd to our database");
+		System.out.println("The person: " + person + " was succefully added to our database");
 		people.add(person);
 
 	}

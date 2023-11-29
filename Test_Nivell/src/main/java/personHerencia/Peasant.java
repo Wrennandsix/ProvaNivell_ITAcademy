@@ -50,6 +50,6 @@ public class Peasant extends Person {
 
 	@Override
 	public String toString() {
-		return "Farmer [name=" + name + ", city=" + city + ", id=" + id + "]";
+		return "Peasant [name=" + name + ", city=" + city + ", id=" + id + "]";
 	}
 }
