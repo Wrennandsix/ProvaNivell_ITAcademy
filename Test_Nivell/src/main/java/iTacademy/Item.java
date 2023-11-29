@@ -39,6 +39,6 @@ public class Item {
 
 	@Override
 	public String toString() {
-		return "Item [name=" + name + ", type=" + type + ", price=" + price + "]";
+		return "Item [name= " + name + ", type= " + type + ", price= " + price + "$]";
 	}
 }

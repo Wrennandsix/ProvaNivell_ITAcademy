@@ -50,9 +50,7 @@ import iTacademy.Item;
 		public abstract void addItem(Item item) throws InventoryFullException;
 		
 	    public abstract void buyItem(Item item) throws InventoryFullException;
-	    
-	    public abstract void showInventory();
-	    
+	    	    
 	    public abstract Item lowestPricedItem();
 	    	    
 	}

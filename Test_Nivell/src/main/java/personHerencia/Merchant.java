@@ -1,5 +1,7 @@
 package personHerencia;
 
+import java.util.Comparator;
+
 import iTacademy.InventoryFullException;
 import iTacademy.Item;
 
@@ -8,7 +10,7 @@ public class Merchant extends Person {
 	private final int MAX_ITEMS = 7;
 	private final double TAX = 0.04;
 	private final double WEARLOSE = 1;
-	private final String TYPE = "Merchant";
+	
 
 	public Merchant(String name, String city) {
 		super(name, city);
@@ -40,36 +42,16 @@ public class Merchant extends Person {
 		inventory.remove(item);
 	}
 
-	public String getTYPE() {
-		return TYPE;
-	}
-
-	public void showInventory() {
-
-		if (inventory.isEmpty()) {
-			System.out.println("This person has no items.");
-		}
-		for (Item item : inventory) {
-			System.out.println(item);
-		}
-	}
 
 	public Item lowestPricedItem() {
-		double lowest = Double.POSITIVE_INFINITY;
-		Item lowestPricedItem = null;
-
-		for (Item item : inventory) {
-			if (item.getPrice() < lowest) {
-				lowest = item.getPrice();
-				lowestPricedItem = item;
-			}
-		}
-		return lowestPricedItem;
-	}
+	        return inventory.stream()
+	                .min(Comparator.comparingDouble(Item::getPrice))
+	                .orElse(null);
+	    }
 
 	@Override
 	public String toString() {
-		return "Merchant [TYPE=" + TYPE + ", name=" + name + ", city=" + city + ", id=" + id + "]";
+		return "Merchant [name=" + name + ", city=" + city + ", id=" + id + "]";
 	}
 
 }
