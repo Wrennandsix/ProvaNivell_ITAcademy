@@ -14,9 +14,11 @@ import personHerencia.Thief;
 
 public class MenuMethods {
 
-	static ArrayList<Person> people = InicialitzeDataBase.createPeople();
 
 	public static void startMenu() {
+		
+		ArrayList<Person> people = InicialitzeDataBase.createPeople();
+		
 		int option;
 		do {
 			option = menu();
