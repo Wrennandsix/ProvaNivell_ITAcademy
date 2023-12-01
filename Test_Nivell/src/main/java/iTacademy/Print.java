@@ -32,7 +32,7 @@ public class Print {
 			System.out.println("The people in "+city+" are:");
 			peopleCity.forEach(System.out::println);
 		} else {
-			System.out.println("No people found in the city: " + city);
+			System.out.println("No people found in the city: " + city+" or it's not in our database");
 		}
 	}
 	public static void printLowestItemCity(Item item, String city) {
